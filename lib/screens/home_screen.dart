@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:at_commons/at_commons.dart';
 import '../service/client_sdk_service.dart';
 import 'package:intl/intl.dart';
+import '../service/database.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String id = 'home';
@@ -13,8 +14,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String? atSign;
-  String? _key;
-  String? _value;
+  String? _date;
+  String? _mood;
 
   // Date Variable
   DateTime _dateTime = DateTime.now();
@@ -95,17 +96,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         children: <Widget>[
                           TextField(
-                            decoration: const InputDecoration(hintText: 'Enter Key'),
-                            onChanged: (String key) {
-                              _key = key;
+                            decoration: const InputDecoration(hintText: 'Enter Date'),
+                            onChanged: (String date) {
+                              _date = date;
                             },
                           ),
                           TextField(
                             decoration: const InputDecoration(
                               hintText: 'Enter Value',
                             ),
-                            onChanged: (String value) {
-                              _value = value;
+                            onChanged: (String mood) {
+                              _mood = mood;
                             },
                           )
                         ],
@@ -123,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.deepOrange,
                         ),
-                        onPressed: _update,
+                        onPressed: () => insert(_date!, _mood!),
                       ),
                     ),
                   ],
@@ -250,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         style: TextButton.styleFrom(backgroundColor: Colors.deepOrange),
-                        onPressed: _lookup,
+                        onPressed: read,
                       ),
                     ),
                   ],
@@ -262,26 +263,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
 
-  }
-
-  /// Create instance of an AtKey and pass that
-  /// into the put() method with the corresponding
-  /// _value string.
-  Future<void> _update() async {
-    if (_key != null && _value != null) {
-      AtKey pair = AtKey();
-      pair.key = _key;
-      pair.sharedWith = atSign;
-      await _serverDemoService.put(pair, _value!);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            '${pair.key} value updated',
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
-    }
   }
 
   /// getAtKeys() will retrieve keys shared by [widget.atSign].
