@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:split_mind/screens/mood_chart.dart';
+import './mood_chart.dart';
+import '../service/database.dart';
 
 class Mood {
   int time;
@@ -19,11 +20,8 @@ class Entry {
   Entry({required this.id, required this.moods});
 }
 
-//List<Mood> sampleMoods = [Mood(time: DateTime.now(), mood: 5.5),
-//                          Mood(time: DateTime.now().add(Duration(hours: 3)), mood: 7.5),
-//                          Mood(time: DateTime.now().add(Duration(hours: 6)), mood: 76.5)];
+// TODO: Put data in the db like in the function above
 
-//Entry sampleEntry = Entry(id: DateTime.now(), moods: sampleMoods);
 
 class DoctorDisplay extends StatefulWidget {
   static final String id = 'doctor';
@@ -53,6 +51,8 @@ class _DoctorDisplayState extends State<DoctorDisplay> {
         barColor: charts.ColorUtil.fromDartColor(Colors.blue),
     )
   ];
+
+  // TODO: Fetch data from db like in the upper function
 
   @override
   Widget build(BuildContext context) {
