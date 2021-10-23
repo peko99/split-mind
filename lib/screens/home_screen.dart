@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:at_commons/at_commons.dart';
 import '../service/client_sdk_service.dart';
+import 'package:intl/intl.dart';
 
 class HomeScreen extends StatefulWidget {
   static final String id = 'home';
@@ -14,6 +15,9 @@ class _HomeScreenState extends State<HomeScreen> {
   String? atSign;
   String? _key;
   String? _value;
+
+  // Date Variable
+  DateTime _dateTime = DateTime.now();
 
   // lookup
   final TextEditingController? _lookupTextFieldController = TextEditingController();
@@ -28,16 +32,39 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String _formattedDate = new DateFormat.yMMMd().format(_dateTime);
+    _openDatePicker(BuildContext context) async {
+      final DateTime date = await showDatePicker(
+        context: context,
+        initialDate: _dateTime,
+        firstDate: DateTime(1990),
+        lastDate: DateTime(2030),
+      ) as DateTime;
+
+      if(date != null) {
+        setState(() {
+          _dateTime = date;
+        });
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Home',
+        title: Text(
+        _formattedDate,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
-      ),
+        leading: IconButton(
+            icon: Icon(Icons.calendar_today),
+            onPressed: () => _openDatePicker(context),
+        ),
+
+
+        ),
+
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -234,6 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+
   }
 
   /// Create instance of an AtKey and pass that
