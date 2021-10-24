@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'split-mind',
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
+        primarySwatch: Colors.deepPurple,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: HomeScreen.id,
+      initialRoute: DoctorDisplay.id,
       routes: <String, Widget Function(BuildContext)>{
         LoginScreen.id: (BuildContext context) => LoginScreen(),
         HomeScreen.id: (BuildContext context) => HomeScreen(),
