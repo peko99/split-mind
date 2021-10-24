@@ -58,6 +58,13 @@ class _HomeScreenState extends State<HomeScreen> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        actions: <Widget>[
+          Image.asset(
+            "assets./konacna1.png",
+            height: 99,
+            width: 100.0,
+          )
+        ],
         leading: IconButton(
             icon: Icon(Icons.calendar_today),
             onPressed: () => _openDatePicker(context),
@@ -122,7 +129,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         style: TextButton.styleFrom(
-                          backgroundColor: Colors.deepOrange,
+                          backgroundColor: Colors.deepPurple,
                         ),
                         onPressed: () => insert(_date!, _mood!),
                       ),
@@ -183,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.white,
                           ),
                         ),
-                        style: TextButton.styleFrom(backgroundColor: Colors.deepOrange),
+                        style: TextButton.styleFrom(backgroundColor: Colors.deepPurple),
                         onPressed: _scan,
                       ),
                     ),
@@ -250,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.white,
                           ),
                         ),
-                        style: TextButton.styleFrom(backgroundColor: Colors.deepOrange),
+                        style: TextButton.styleFrom(backgroundColor: Colors.deepPurple),
                         onPressed: read,
                       ),
                     ),
