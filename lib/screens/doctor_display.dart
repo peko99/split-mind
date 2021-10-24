@@ -8,6 +8,7 @@ import 'package:multi_select_flutter/bottom_sheet/multi_select_bottom_sheet_fiel
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import './mood_chart.dart';
+import './mood_counter.dart';
 import '../service/database.dart';
 import './mood_counter.dart';
 
@@ -45,7 +46,7 @@ final _SYMPTOM_OPTIONS = SYMPTOM_OPTIONS
     .map((symptom) => MultiSelectItem<String?>(symptom, symptom))
     .toList();
 final _FOOD_OPTIONS =
-FOOD_OPTIONS.map((food) => MultiSelectItem<String?>(food, food)).toList();
+    FOOD_OPTIONS.map((food) => MultiSelectItem<String?>(food, food)).toList();
 final _SLEEP_QUALITY_OPTIONS = SLEEP_QUALITY_OPTIONS
     .map((sleep) => MultiSelectItem<String?>(sleep, sleep))
     .toList();
@@ -103,8 +104,6 @@ class _DoctorDisplayState extends State<DoctorDisplay> {
   // Bar Chart
   final List<Mood> data = sampleEntry.moods;
 
-  // TODO: Fetch data from db like in the upper function
-
   @override
   Widget build(BuildContext context) {
     String _formattedDate = new DateFormat.yMMMd().format(_dateTime);
@@ -140,83 +139,82 @@ class _DoctorDisplayState extends State<DoctorDisplay> {
               'assets/konacna.png',
               height: 100.0,
               width: 100.0,
-
             )
           ],
         ),
         body: SingleChildScrollView(
             child: Column(
-              children: [
-                MoodCounter(),
-                Container(
-                    width: double.infinity,
-                    height: 250.0,
-                    margin: EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Container(
-                            margin: EdgeInsets.symmetric(
-                              horizontal: 12.0,
-                              vertical: 15.0,
-                            ),
-                            child: MoodChart(data, streamController.stream),
-                          ),
+          children: [
+            MoodCounter(),
+            Container(
+                width: double.infinity,
+                height: 250.0,
+                margin: EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(
+                          horizontal: 12.0,
+                          vertical: 15.0,
                         ),
-                      ],
-                    )),
-                Container(
-                    child: MultiSelectBottomSheetField(
-                      items: _SYMPTOM_OPTIONS,
-                      initialValue: mockEntry['symptoms'],
-                      buttonText: Text('Symptoms'),
-                      listType: MultiSelectListType.CHIP,
-                      onConfirm: (symptoms) {
-                        mockEntry['symptoms'] =
-                            symptoms.map((symptom) => symptom.toString()).toList();
-                        print(mockEntry['symptoms']);
-                      },
-                    )),
-                Container(
-                    child: MultiSelectBottomSheetField(
-                      items: _FOOD_OPTIONS,
-                      initialValue: mockEntry['symptoms'],
-                      buttonText: Text('Food'),
-                      listType: MultiSelectListType.CHIP,
-                      onConfirm: (symptoms) {
-                        mockEntry['symptoms'] =
-                            symptoms.map((symptom) => symptom.toString()).toList();
-                        print(mockEntry['symptoms']);
-                      },
-                    )),
-                Container(
-                    child: MultiSelectBottomSheetField(
-                      items: _SLEEP_QUALITY_OPTIONS,
-                      initialValue: mockEntry['symptoms'],
-                      buttonText: Text('Sleep Quality'),
-                      listType: MultiSelectListType.CHIP,
-                      onConfirm: (symptoms) {
-                        mockEntry['symptoms'] =
-                            symptoms.map((symptom) => symptom.toString()).toList();
-                        print(mockEntry['symptoms']);
-                      },
-                    )),
-                Container(
-                    child: MultiSelectBottomSheetField(
-                      items: _ACTIVITY_LEVEL_OPTIONS,
-                      initialValue: mockEntry['symptoms'],
-                      buttonText: Text('Activity Level'),
-                      listType: MultiSelectListType.CHIP,
-                      onConfirm: (symptoms) {
-                        mockEntry['symptoms'] =
-                            symptoms.map((symptom) => symptom.toString()).toList();
-                        print(mockEntry['symptoms']);
-                      },
-                    )),
-              ],
-            )));
+                        child: MoodChart(data, streamController.stream),
+                      ),
+                    ),
+                  ],
+                )),
+            Container(
+                child: MultiSelectBottomSheetField(
+              items: _SYMPTOM_OPTIONS,
+              initialValue: mockEntry['symptoms'],
+              buttonText: Text('Symptoms'),
+              listType: MultiSelectListType.CHIP,
+              onConfirm: (symptoms) {
+                mockEntry['symptoms'] =
+                    symptoms.map((symptom) => symptom.toString()).toList();
+                print(mockEntry['symptoms']);
+              },
+            )),
+            Container(
+                child: MultiSelectBottomSheetField(
+              items: _FOOD_OPTIONS,
+              initialValue: mockEntry['symptoms'],
+              buttonText: Text('Food'),
+              listType: MultiSelectListType.CHIP,
+              onConfirm: (symptoms) {
+                mockEntry['symptoms'] =
+                    symptoms.map((symptom) => symptom.toString()).toList();
+                print(mockEntry['symptoms']);
+              },
+            )),
+            Container(
+                child: MultiSelectBottomSheetField(
+              items: _SLEEP_QUALITY_OPTIONS,
+              initialValue: mockEntry['symptoms'],
+              buttonText: Text('Sleep Quality'),
+              listType: MultiSelectListType.CHIP,
+              onConfirm: (symptoms) {
+                mockEntry['symptoms'] =
+                    symptoms.map((symptom) => symptom.toString()).toList();
+                print(mockEntry['symptoms']);
+              },
+            )),
+            Container(
+                child: MultiSelectBottomSheetField(
+              items: _ACTIVITY_LEVEL_OPTIONS,
+              initialValue: mockEntry['symptoms'],
+              buttonText: Text('Activity Level'),
+              listType: MultiSelectListType.CHIP,
+              onConfirm: (symptoms) {
+                mockEntry['symptoms'] =
+                    symptoms.map((symptom) => symptom.toString()).toList();
+                print(mockEntry['symptoms']);
+              },
+            )),
+          ],
+        )));
   }
 }

@@ -7,7 +7,7 @@ import 'package:untitled/screens/doctor_display.dart';
 import '../service/client_sdk_service.dart';
 import 'package:at_onboarding_flutter/at_onboarding_flutter.dart';
 import 'package:at_utils/at_logger.dart';
-import './home_screen.dart';
+import './doctor_display.dart';
 import '../utils/constants.dart';
 
 /// User Login screen
@@ -65,7 +65,7 @@ class _LoginScreen extends State<LoginScreen> {
                     onError: (Object? error) {
                       _logger.severe('Onboarding throws $error error');
                     },
-                    nextScreen: HomeScreen(),
+                    nextScreen: DoctorDisplay(),
                     appAPIKey: MixedConstants.prodAPIKey,
                     rootEnvironment: RootEnvironment.Production,
                   );

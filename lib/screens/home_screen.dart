@@ -21,7 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   DateTime _dateTime = DateTime.now();
 
   // lookup
-  final TextEditingController? _lookupTextFieldController = TextEditingController();
+  final TextEditingController? _lookupTextFieldController =
+      TextEditingController();
   String? _lookupKey;
   String? _lookupValue;
 
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         lastDate: DateTime(2030),
       ) as DateTime;
 
-      if(date != null) {
+      if (date != null) {
         setState(() {
           _dateTime = date;
         });
@@ -52,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-        _formattedDate,
+          _formattedDate,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -66,13 +67,10 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
         leading: IconButton(
-            icon: Icon(Icons.calendar_today),
-            onPressed: () => _openDatePicker(context),
+          icon: Icon(Icons.calendar_today),
+          onPressed: () => _openDatePicker(context),
         ),
-
-
-        ),
-
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -103,7 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         shrinkWrap: true,
                         children: <Widget>[
                           TextField(
-                            decoration: const InputDecoration(hintText: 'Enter Date'),
+                            decoration:
+                                const InputDecoration(hintText: 'Enter Date'),
                             onChanged: (String date) {
                               _date = date;
                             },
@@ -190,7 +189,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.white,
                           ),
                         ),
-                        style: TextButton.styleFrom(backgroundColor: Colors.deepPurple),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.deepPurple),
                         onPressed: _scan,
                       ),
                     ),
@@ -225,7 +225,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           TextField(
-                            decoration: const InputDecoration(hintText: 'Enter Key'),
+                            decoration:
+                                const InputDecoration(hintText: 'Enter Key'),
                             controller: _lookupTextFieldController,
                           ),
                           const SizedBox(height: 20),
@@ -257,7 +258,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             color: Colors.white,
                           ),
                         ),
-                        style: TextButton.styleFrom(backgroundColor: Colors.deepPurple),
+                        style: TextButton.styleFrom(
+                            backgroundColor: Colors.deepPurple),
                         onPressed: read,
                       ),
                     ),
@@ -269,7 +271,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-
   }
 
   /// getAtKeys() will retrieve keys shared by [widget.atSign].
@@ -280,7 +281,8 @@ class _HomeScreenState extends State<HomeScreen> {
       sharedBy: atSign,
     );
     if (response.isNotEmpty) {
-      List<String?> scanList = response.map((AtKey atKey) => atKey.key).toList();
+      List<String?> scanList =
+          response.map((AtKey atKey) => atKey.key).toList();
       setState(() => _scanItems = scanList);
     }
     ScaffoldMessenger.of(context).showSnackBar(
