@@ -50,7 +50,7 @@ class _MoodChartState extends State<MoodChart> {
       children: <Widget> [
         Text ("Today moods chart"),
         Expanded(
-          child: charts.BarChart(series, animate: true)
+            child: charts.BarChart(series, animate: true)
         )
       ],
     );
