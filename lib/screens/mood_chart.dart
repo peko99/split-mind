@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import './doctor_display.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'dart:async';
-import './mood_counter.dart';
 
 class MoodChart extends StatefulWidget {
   List<Mood> data;
@@ -37,6 +36,7 @@ class _MoodChartState extends State<MoodChart> {
 
   @override
   Widget build(BuildContext context) {
+    widget.data.sort((a, b) => a.time.compareTo(b.time));
     List<charts.Series<Mood, String>> series = [
       charts.Series(
         id: "Moods",

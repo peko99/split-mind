@@ -87,9 +87,9 @@ class _MoodCounterState extends State<MoodCounter> {
               ),
               child: Text('Save'),
               onPressed: () {
-                var mood = Mood(time: DateTime.now().hour, mood: count, barColor: charts.ColorUtil.fromDartColor(Colors.blue),);
-                sampleEntry.moods.add(mood);
-                streamController.add(sampleEntry.moods);
+                var mood = Mood(time: DateTime.now().hour, mood: count, barColor: charts.ColorUtil.fromDartColor(Colors.purple.withOpacity(0.35)),);
+                selectedEntry.moods.add(mood);
+                streamController.add(selectedEntry.moods);
               },
             ),
           ),
